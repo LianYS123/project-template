@@ -1,0 +1,26 @@
+// 为什么改成json文件？
+/* 
+ 由于 babel.config.json 和 .babelrc.json 是静态 JSON 文件，
+ 它允许其他工具使用Babel 之类的打包器可以安全地缓存 Babel 的结果，
+ 这可以提高构建性能。
+*/
+//参考  https://babel.dev/docs/en/config-files
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  // "plugins": [
+  //   "@babel/plugin-syntax-dynamic-import",
+  //   [
+  //     "import",
+  //     {
+  //       "libraryName": "antd",
+  //       "libraryDirectory": "es",
+  //       "style": true
+  //     }
+  //   ]
+  // ],
+  "env": {
+    "production": {
+      "plugins": ["transform-remove-console"]
+    }
+  }
+}

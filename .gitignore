@@ -1,0 +1,19 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+node_modules
+node_modules_old
+*.log
+.idea
+.vscode/
+output
+.history
+proxy.js
+langs
+.DS_Store
+package-lock.json
+yarn.lock
+deploy.sh
+
+# 个人工具、临时文件
+custom-files
+build/match-utils/csv
+.eslintcache
