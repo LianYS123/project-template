@@ -27,8 +27,8 @@ module.exports = {
   entry: path.join(src, "index.jsx"),
 
   output: {
-    filename: `js/[name].bundle.[hash:7].js`,
-    chunkFilename: `js/[name].bundle.[hash:7].js`,
+    filename: `js/[name].bundle.[chunkhash:7].js`,
+    chunkFilename: `js/[name].bundle.[chunkhash:7].js`,
     path: path.resolve(__dirname, "../output")
   },
 
@@ -89,7 +89,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 20000,
-            name: "assets/imgs/[name].[hash:7].[ext]"
+            name: "assets/imgs/[name].[chunkhash:7].[ext]"
           }
         }
       },
@@ -100,7 +100,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 20000,
-            name: "assets/fonts/[name].[hash:7].[ext]"
+            name: "assets/fonts/[name].[chunkhash:7].[ext]"
           }
         }
       },
