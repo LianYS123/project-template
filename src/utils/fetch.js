@@ -11,6 +11,11 @@ const xFetch = function (url, options = {}, config = {}) {
   // 处理参数
   method = method.toUpperCase();
 
+  const urlReg = /\{(.*?)\}/g;
+  if (url && urlReg.test(url)) {
+    url = url.replace(urlReg, ($0, $1) => body[$1]);
+  }
+
   if (method === "POST") {
     body = JSON.stringify(body);
   }
@@ -34,17 +39,13 @@ const xFetch = function (url, options = {}, config = {}) {
   return fetch(url, ops)
     .then(res => res.json())
     .then((data = {}) => {
-      const { code = "", message = i.get("service_api_err") } = data;
+      const { code = "", message = i.get("SERVICE_API_ERR") } = data;
       if (code === "0000") {
         return data;
       } else if (code === "LGN4001000") {
         history.push(routers.LOGIN);
       } else if (autoHandleError) {
-        if (message) {
-          notification.error({ message });
-        } else {
-          notification.error({ message: i.get("SERVICE_API_ERR") });
-        }
+        notification.error({ message });
       }
       return data;
     })
