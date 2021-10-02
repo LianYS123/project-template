@@ -5,7 +5,8 @@ const model = {
 
   state: {
     sidebar: sidebar,
-    language: "zh_CN"
+    loadingApp: false,
+    language: localStorage.getItem("language") || "zh_CN"
   },
 
   reducers: {
@@ -15,10 +16,16 @@ const model = {
         sidebar
       };
     },
-    setLanguage(state, { payload: lang }) {
+    setLanguage(state, { payload: language }) {
       return {
         ...state,
-        lang
+        language
+      };
+    },
+    setLoadingApp(state, { payload: loadingApp }) {
+      return {
+        ...state,
+        loadingApp
       };
     }
   },
@@ -26,7 +33,7 @@ const model = {
   effects: {
     *updateSidebar({ payload }, { call, put }) {
       yield put({
-        type: "setLanguage",
+        type: "setSidebar",
         payload
       });
     },
@@ -34,6 +41,13 @@ const model = {
     *updateLanguage({ payload }, { call, put }) {
       yield put({
         type: "setLanguage",
+        payload
+      });
+    },
+
+    *updateLoadingApp({ payload }, { call, put }) {
+      yield put({
+        type: "setLoadingApp",
         payload
       });
     }

@@ -28,7 +28,9 @@ const xFetch = function (url, options = {}, config = {}) {
     },
     ...otherOps
   };
-  if (method !== "GET") ops.body = body;
+  if (method !== "GET") {
+    ops.body = body;
+  }
   return fetch(url, ops)
     .then(res => res.json())
     .then((data = {}) => {
@@ -47,6 +49,7 @@ const xFetch = function (url, options = {}, config = {}) {
       return data;
     })
     .catch(error => {
+      // eslint-disable-next-line no-console
       console.error(error);
       if (autoHandleError) {
         notification.error({ message: i.get("SERVICE_API_ERR") });

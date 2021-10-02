@@ -1,23 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { router } from "dva";
 import { ConfigProvider } from "antd";
 
-import { useRouteList } from "hooks";
+import { useInitLanguage, useRouteList } from "hooks";
 import loadable from "utils/loadable.js";
-import { antdLocales, locales } from "config/locales";
-import i from "react-intl-universal";
-import { useLanguage } from "hooks";
+import { antdLocales } from "config/locales";
 import AppLayout from "layout";
 import routers from "config/routers";
 import DVA from "./models";
 
+import { useSelector } from "dva";
+
 import "./app.less";
+import Loading from "components/loading";
 
 const { Router, Route, Switch, Redirect } = router;
 
 const AppRoutes = () => {
   const routeList = useRouteList();
-  return (
+  useInitLanguage();
+  const loadingApp = useSelector(state => state.app.loadingApp);
+  return !loadingApp ? (
     <Switch>
       <Route path={routers.LOGIN} component={loadable("login")} />
       <Route path="/pages">
@@ -32,17 +35,12 @@ const AppRoutes = () => {
       </Route>
       <Redirect to={routers.HOME} />
     </Switch>
+  ) : (
+    <Loading />
   );
 };
 
 const WrapApp = props => {
-  const { language } = useLanguage();
-  useEffect(() => {
-    i.init({
-      locales,
-      currentLocale: language
-    });
-  }, []);
   return (
     <Router {...props}>
       <ConfigProvider locale={antdLocales}>

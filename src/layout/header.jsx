@@ -3,7 +3,7 @@ import { useLanguage } from "hooks";
 
 // header
 const AppHeader = () => {
-  const { setLanguage } = useLanguage();
+  const { setLanguage, language } = useLanguage();
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
@@ -14,15 +14,15 @@ const AppHeader = () => {
       <div style={{ flex: 1, textAlign: "right" }}>
         <Select
           onChange={lang => setLanguage(lang)}
-          defaultValue="zh-CN"
+          value={language}
           options={[
             {
               label: "Chinese",
-              value: "zh-CN"
+              value: "zh_CN"
             },
             {
               label: "English",
-              value: "en-US"
+              value: "en_US"
             }
           ]}
         />
