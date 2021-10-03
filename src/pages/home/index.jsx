@@ -5,13 +5,14 @@ const Home = () => {
   return (
     <div>
       {i.get("APP_NAME")}{" "}
-      <Button
+      <button
         onClick={() => {
           message.info(i.get("APP_NAME"));
         }}
+        className="py-2 px-4 m-1 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
       >
-        test
-      </Button>
+        Click me
+      </button>
     </div>
   );
 };

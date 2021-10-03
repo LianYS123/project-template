@@ -12,6 +12,7 @@ import DVA from "./models";
 import { useSelector } from "dva";
 
 import "./app.less";
+
 import Loading from "components/loading";
 
 const { Router, Route, Switch, Redirect } = router;

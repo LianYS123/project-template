@@ -8,6 +8,7 @@ const getProxy = () => {
   const proxy = fs.existsSync(join(__dirname, "../proxy.js"))
     ? require("../proxy.js")
     : require("../proxy.config.js");
+  // eslint-disable-next-line no-console
   console.log(proxy);
   return proxy;
 };

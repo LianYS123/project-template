@@ -19,8 +19,17 @@ const getAligns = () => {
     .reduce((res, cur) => ({ ...res, [cur.filename]: cur.filepath }), {});
 };
 
-const getExtraLoader = () => {
-  return isEnvDevelopment ? "style-loader" : MiniCssExtractPlugin.loader;
+const getExtraLoaders = ({ modules = false } = {}) => {
+  return [
+    isEnvDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+    {
+      loader: "css-loader",
+      options: {
+        modules
+      }
+    },
+    "postcss-loader"
+  ];
 };
 // 基础配置
 module.exports = {
@@ -38,40 +47,23 @@ module.exports = {
         test: /\.css$/,
         include: [src],
         exclude: /\.module\.css$/,
-        use: [getExtraLoader(), "css-loader"]
+        use: [...getExtraLoaders()]
       },
       {
         test: /\.module\.css$/,
         include: [src],
-        use: [
-          getExtraLoader(),
-          {
-            loader: "css-loader",
-            options: {
-              modules: true
-            }
-          }
-        ]
+        use: [...getExtraLoaders({ modules: true })]
       },
       {
         test: /\.less$/,
         include: [src],
         exclude: /\.module\.less$/,
-        use: [getExtraLoader(), "css-loader", "less-loader"]
+        use: [...getExtraLoaders(), "less-loader"]
       },
       {
         test: /\.module\.less$/,
         include: [src],
-        use: [
-          getExtraLoader(),
-          {
-            loader: "css-loader",
-            options: {
-              modules: true
-            }
-          },
-          "less-loader"
-        ]
+        use: [...getExtraLoaders({ modules: true }), "less-loader"]
       },
       {
         test: /\.jsx?$/,
