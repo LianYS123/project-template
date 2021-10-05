@@ -1,21 +1,24 @@
 import { useState, useRef } from "react";
-import { message } from "antd";
+import { get, getService } from "utils/fetchUtils";
 /**
  * @description: 异步方法的简单封装，处理请求的loading状态
- * @param {function} method 异步方法
+ * @param {function} service 异步方法
  * @return {array} 异步方法和状态信息
  */
-export const useMutation = (method, initialData) => {
+export const useMutation = (service, initialData) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [data, setData] = useState(initialData);
-  const methodRef = useRef(method);
-  methodRef.current = method;
+  const serviceRef = useRef(service);
+  serviceRef.current = service;
 
   const loadData = async (...params) => {
     try {
       setLoading(true);
-      const res = await methodRef.current(...params);
+      const method = serviceRef.current;
+      const service =
+        typeof method === "string" ? getService(method, get) : method;
+      const res = await service(...params);
       setLoading(false);
       setData(res);
       return res;

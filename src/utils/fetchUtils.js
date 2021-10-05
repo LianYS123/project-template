@@ -32,3 +32,8 @@ export const del = (url, data, options, config) => {
   };
   return xFetch(urlWithQuery, newOptions, config);
 };
+
+export const getService =
+  (url, method) =>
+  (params, ...rest) =>
+    method(url, params, ...rest);

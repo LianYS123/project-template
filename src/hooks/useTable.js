@@ -62,7 +62,7 @@ const useRowSelection = customConfig => {
 /**
  * @description: 封装方便antd table使用的hooks
  * @param {Object} options 配置信息
- * @param {Function} options.method 请求方法
+ * @param {Function} options.service 请求方法
  * @param {Number} [options.defaultPageSize = 10] 默认分页大小
  * @param {Object} [options.necessaryParams] 必要请求参数
  * @param {Object|Boolean} [options.rowSelection] 选择功能配置, 传true使用默认
@@ -72,7 +72,7 @@ const useRowSelection = customConfig => {
  */
 export const useTable = options => {
   const {
-    method,
+    service,
     defaultPageSize = 10,
     necessaryParams = {},
     formatter = defaultFormatter,
@@ -93,7 +93,7 @@ export const useTable = options => {
   const rowSelection = useRowSelection(customConfig);
 
   const { data, loading, ...restState } = useRequest({
-    method,
+    service,
     necessaryParams: {
       ...necessaryParams,
       [pageFieldName]: pagination.current,

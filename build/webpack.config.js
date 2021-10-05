@@ -66,6 +66,14 @@ module.exports = {
         use: [...getExtraLoaders({ modules: true }), "less-loader"]
       },
       {
+        test: /\.css$/,
+        exclude: [src],
+        use: [
+          isEnvDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
+      },
+      {
         test: /\.jsx?$/,
         include: [src],
         use: [
@@ -81,7 +89,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 20000,
-            name: "assets/imgs/[name].[chunkhash:7].[ext]"
+            name: "assets/imgs/[name].[hash:7].[ext]"
           }
         }
       },
@@ -92,7 +100,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 20000,
-            name: "assets/fonts/[name].[chunkhash:7].[ext]"
+            name: "assets/fonts/[name].[hash:7].[ext]"
           }
         }
       },

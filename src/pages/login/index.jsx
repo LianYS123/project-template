@@ -1,19 +1,16 @@
 import i from "react-intl-universal";
 import { Form, Input, Button, Typography } from "antd";
-import { login } from "services/login";
 import { useMutation } from "hooks";
 import history from "utils/history";
 import routers from "config/routers";
+import { getService, post } from "utils/fetchUtils";
+import { ACCOUNT_LOGIN } from "api/login";
 
 const Login = () => {
-  const [submit, { loading }] = useMutation(login);
+  const [submit, { loading }] = useMutation(getService(ACCOUNT_LOGIN, post));
 
   const handleLogin = async values => {
-    const { token, userInfos, code, userId } = await submit({
-      ...values,
-      platform: "MERCHANT",
-      system: "mer"
-    });
+    const { token, userInfos, code, userId } = await submit(values);
 
     if (code === "0000") {
       localStorage.setItem("acc", token);

@@ -5,7 +5,7 @@ import { useDeepCompareEffect } from "./useUtils";
 /**
  * @description: 请求方法的简单封装，处理请求的loading状态
  * @param {Object} config
- * @param {*} config.method 请求方法
+ * @param {*} config.service 请求方法
  * @param {*} config.defaultParams 默认参数
  * @param {*} config.necessaryParams 必要参数
  * @param {*} config.ready === true时发起请求，默认值为true
@@ -13,14 +13,14 @@ import { useDeepCompareEffect } from "./useUtils";
  * @param {*} config.rest 请求方法额外参数, onError事件等options可以通过这个参数传递
  */
 export const useRequest = ({
-  method,
+  service,
   defaultParams = {},
   necessaryParams,
   ready = true,
   initialData,
   ...rest
 }) => {
-  const [_method, requestState] = useMutation(method, initialData);
+  const [_service, requestState] = useMutation(service, initialData);
   const paramRef = useRef(defaultParams);
   const necessaryParamsRef = useRef(necessaryParams);
   necessaryParamsRef.current = necessaryParams;
@@ -29,7 +29,7 @@ export const useRequest = ({
     paramRef.current = _params;
     if (!requestState.loading) {
       const realParams = { ...necessaryParamsRef.current, ..._params }; //每次请求都带上necessaryParams
-      _method(realParams, rest);
+      _service(realParams, rest);
     }
   };
 
