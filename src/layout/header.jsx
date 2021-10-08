@@ -1,13 +1,17 @@
 import routers from "config/routers";
+import { useSidebar } from "hooks";
 import { useHistory } from "react-router";
 
 // header
 const AppHeader = () => {
   const history = useHistory();
+  const { setSidebar, sidebar = [] } = useSidebar();
   return (
     <header className="flex justify-between items-center px-14 py-4 shadow">
       <div className="space-x-6">
-        <span className="text-lg">BLOG</span>
+        <span onClick={() => setSidebar(["test"])} className="text-lg">
+          BLOG {sidebar.join(",")}
+        </span>
         {/* <input className="w-48 h-8" type="text"  */}
         <input
           placeholder="Search"

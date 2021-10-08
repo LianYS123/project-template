@@ -11,10 +11,10 @@ import {
 export const useSidebar = () => {
   const sidebar = useSelector(({ app }) => app.sidebar);
   const dispatch = useDispatch();
-  const setSidebar = payload => {
+  const setSidebar = sidebar => {
     dispatch({
-      type: "updateSidebar",
-      payload
+      type: "app/setState",
+      payload: { sidebar }
     });
   };
 
