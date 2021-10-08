@@ -1,4 +1,3 @@
-import i from "react-intl-universal";
 import { Form, Input, Button, Typography } from "antd";
 import { useMutation } from "hooks";
 import routers from "config/routers";
@@ -40,7 +39,7 @@ const Login = () => {
         }}
       >
         <Typography.Title style={{ textAlign: "center" }} level={2}>
-          {i.get("APP_NAME")}
+          Blog
         </Typography.Title>
         <Form.Item name={"account"} rules={[{ required: true }]}>
           <Input size="large" placeholder="Account" />
@@ -57,7 +56,7 @@ const Login = () => {
           htmlType="submit"
           type="primary"
         >
-          {i.get("SURE_LOGIN")}
+          登录
         </Button>
       </div>
     </Form>

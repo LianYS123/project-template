@@ -3,18 +3,15 @@ import { router } from "dva";
 import { ConfigProvider } from "antd";
 
 import loadable from "utils/loadable.js";
-import { antdLocales } from "config/locales";
 import AppLayout from "layout";
 import routers from "config/routers";
 import DVA from "./models";
 
 import "./app.less";
-import { useInitLanguage } from "hooks";
 
 const { Router, Route, Switch, Redirect } = router;
 
 const AppRoutes = () => {
-  useInitLanguage();
   return (
     <Switch>
       <Route path={routers.LOGIN} component={loadable("login")} />
@@ -36,7 +33,7 @@ const AppRoutes = () => {
 const WrapApp = props => {
   return (
     <Router {...props}>
-      <ConfigProvider locale={antdLocales}>
+      <ConfigProvider>
         <AppRoutes />
       </ConfigProvider>
     </Router>

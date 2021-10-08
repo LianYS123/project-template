@@ -1,4 +1,3 @@
-import i from "react-intl-universal";
 import { notification } from "antd";
 
 const xFetch = function (url, options = {}, config = {}) {
@@ -17,15 +16,16 @@ const xFetch = function (url, options = {}, config = {}) {
     body = JSON.stringify(body);
   }
 
-  if (method === "POST" && !headers["Content-Type"]) {
+  if (method === "POST") {
     headers["Content-Type"] = "application/json";
   }
+
+  const token = "Bearer " + localStorage.getItem("acc");
 
   const ops = {
     method,
     headers: {
-      lang: i.get("LANG"),
-      token: localStorage.getItem("acc"),
+      Authorization: token,
       ...headers
     },
     ...otherOps
@@ -36,7 +36,7 @@ const xFetch = function (url, options = {}, config = {}) {
   return fetch(url, ops)
     .then(res => res.json())
     .then((data = {}) => {
-      const { code = "", message = i.get("SERVICE_API_ERR") } = data;
+      const { code = "", message = "请求异常" } = data;
       if (code === "0000") {
         return data;
       } else if (autoHandleError) {
@@ -48,7 +48,7 @@ const xFetch = function (url, options = {}, config = {}) {
       // eslint-disable-next-line no-console
       console.error(error);
       if (autoHandleError) {
-        notification.error({ message: i.get("SERVICE_API_ERR") });
+        notification.error({ message: "请求异常" });
       }
     });
 };

@@ -1,25 +1,5 @@
-import { Select } from "antd";
 import routers from "config/routers";
-import { useLanguage } from "hooks";
 import { useHistory } from "react-router";
-
-const LanguageSelection = () => {
-  const { setLanguage, language } = useLanguage();
-  <Select
-    onChange={lang => setLanguage(lang)}
-    value={language}
-    options={[
-      {
-        label: "Chinese",
-        value: "zh_CN"
-      },
-      {
-        label: "English",
-        value: "en_US"
-      }
-    ]}
-  />;
-};
 
 // header
 const AppHeader = () => {
