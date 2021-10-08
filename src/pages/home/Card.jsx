@@ -6,15 +6,17 @@ export const Card = ({ src, children, title, desc, info }) => {
       <div className="flex flex-col justify-between">
         <div className="space-y-1 group">
           <h3 className="text-lg font-bold group-hover:underline">{title}</h3>
-          <div className="flex">
-            <p className="text-base max-h-24 overflow-hidden font-normal group-hover:underline mr-1 md:mr-4">
+          <div className="flex h-16 md:h-24">
+            <p className="text-sm h-full md:text-base overflow-hidden font-normal group-hover:underline mr-1 md:mr-4">
               {children}
             </p>
-            <img
-              src={src}
-              alt="scene"
-              className="object-cover rounded w-24 h-16 md:w-48 md:h-32"
-            />
+            <div className="h-full w-24 flex-shrink-0 md:w-40">
+              <img
+                src={src}
+                alt="scene"
+                className="object-cover rounded w-full h-full"
+              />
+            </div>
           </div>
         </div>
         <div className="font-semibold">

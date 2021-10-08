@@ -32,7 +32,8 @@ export const controls = [
   "hr",
   "separator",
   "separator",
-  "clear"
+  "clear",
+  "media"
 ];
 
 export const fontFamilies = [

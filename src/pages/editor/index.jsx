@@ -1,72 +1,53 @@
 import React from "react";
-import { Button, Spin } from "antd";
+import { Button, Form, Input, Spin } from "antd";
 import BraftEditor from "braft-editor";
-
-import { ContentUtils } from "braft-utils";
 
 import "braft-editor/dist/index.css";
 import { controls, fontFamilies } from "./config";
-import { useRef } from "react";
-import { useEditorState } from "./hooks";
-import { SPLITER } from "constants";
+import { useArticle } from "./hooks";
+import { useHistory } from "react-router";
 
-function Editor(props) {
-  const { history } = props;
-  const { location } = history;
-  const { query } = location;
-  const { resourceId, menuId, resourcePath } = query;
-
-  const editorRef = useRef();
-
-  const { loading, editorState, setEditorState } = useEditorState(resourceId);
-
-  // 确认，上传后插入图片
-  const mediaConfirm = async file => {
-    const { url, fileType } = file;
-    setEditorState(editorState =>
-      ContentUtils.insertMedias(editorState, [
-        {
-          type: fileType === "video" ? "VIDEO" : "IMAGE",
-          url
-        }
-      ])
-    );
-  };
+function Editor() {
+  const [form] = Form.useForm();
+  const { loading } = useArticle({ form });
+  const history = useHistory();
 
   // 保存文章
-  const onSaveTemplate = () => {
+  const handleSubmit = values => {
+    const { editorState, ...rest } = values;
     const html = editorState.toHTML();
     const raw = editorState.toRAW();
-    const requestContent = `${html}${SPLITER}${raw}`;
+
+    const requestParams = { html, raw, ...rest };
+    console.log(requestParams);
   };
 
   return (
-    <div className="my-component editor-wrapper">
+    <div className="container mx-auto py-8">
       <Spin spinning={loading}>
-        <BraftEditor
-          controls={controls}
-          fontFamilies={fontFamilies}
-          // language={lang}
-          ref={instance => (editorRef.current = instance)}
-          value={editorState}
-          // media={ {accepts: { audio:true,video:true} } }
-          onChange={setEditorState}
-          // onSave={this.submitContent}
-          extendControls={[]}
-        />
+        <Form onFinish={handleSubmit} form={form}>
+          {/* 文章标题 */}
+          <Form.Item rules={[{ required: true }]} label="标题" name="title">
+            <Input className="w-64" placeholder="请输入标题" />
+          </Form.Item>
+          {/* 文章内容 */}
+          <Form.Item name="editorState" colon={false} label=" ">
+            <BraftEditor
+              controls={controls}
+              fontFamilies={fontFamilies}
+              // media={ {accepts: { audio:true,video:true} } }
+            />
+          </Form.Item>
 
-        <div className="submit-btn">
-          <Button type="primary" onClick={onSaveTemplate}>
-            保存
-          </Button>
-          <Button
-            style={{ marginLeft: 10 }}
-            type="default"
-            onClick={() => history.go(-1)}
-          >
-            返回
-          </Button>
-        </div>
+          <div className="text-center space-x-4">
+            <Button type="primary" htmlType="submit">
+              保存
+            </Button>
+            <Button type="default" onClick={() => history.go(-1)}>
+              返回
+            </Button>
+          </div>
+        </Form>
       </Spin>
     </div>
   );

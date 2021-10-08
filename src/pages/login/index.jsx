@@ -1,21 +1,23 @@
 import i from "react-intl-universal";
 import { Form, Input, Button, Typography } from "antd";
 import { useMutation } from "hooks";
-import history from "utils/history";
 import routers from "config/routers";
 import { getService, post } from "utils/fetchUtils";
 import { ACCOUNT_LOGIN } from "api/login";
+import { useHistory } from "react-router";
 
 const Login = () => {
   const [submit, { loading }] = useMutation(getService(ACCOUNT_LOGIN, post));
+  const history = useHistory();
 
   const handleLogin = async values => {
-    const { token, userInfos, code, userId } = await submit(values);
+    history.push(routers.HOME);
+    // const { token, userInfos, code, userId } = await submit(values);
 
-    if (code === "0000") {
-      localStorage.setItem("acc", token);
-      history.push(routers.HOME);
-    }
+    // if (code === "0000") {
+    //   localStorage.setItem("acc", token);
+    //   history.push(routers.HOME);
+    // }
   };
 
   return (

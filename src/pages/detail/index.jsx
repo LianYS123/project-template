@@ -2,25 +2,23 @@ import React from "react";
 import { Affix, Spin, Anchor } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { useDocAuth, useHtmlAndOutline } from "./hooks";
+import { useHistory } from "react-router";
+import routers from "config/routers";
 
 const { Link } = Anchor;
 
-function Template({ history }) {
-  const { location } = history;
-  const { query } = location;
-  const { resourcePath } = query;
-  const resourceId = location.pathname.replace("/template/", "");
+function Template() {
+  const resourceId = 0;
+  const history = useHistory();
 
   const auth = useDocAuth();
   const { html, outline, loading } = useHtmlAndOutline(resourceId);
 
   const goEdit = () => {
     history.push({
-      pathname: "/editor",
+      pathname: routers.EDITOR,
       query: {
-        resourceId,
-        menuId: query.menu,
-        resourcePath: resourcePath
+        resourceId
       }
     });
   };
@@ -41,30 +39,20 @@ function Template({ history }) {
   };
 
   return (
-    <div
-      id="anchor-box"
-      style={{ maxWidth: "100%", maxHeight: "100%", overflow: "auto" }}
-    >
-      <Spin spinning={loading} style={{ minHeight: 500, paddingTop: 30 }}>
+    <div id="anchor-box" className="container h-full overflow-auto">
+      <Spin spinning={loading}>
         <div id="htmlTemplate" dangerouslySetInnerHTML={{ __html: html }}></div>
         {auth && (
-          <div className="edit-btn" onClick={goEdit}>
+          <div className="space-x-1" onClick={goEdit}>
+            <span>编辑</span>
             <EditOutlined />
           </div>
         )}
-        <Affix
-          onClick={e => e.preventDefault()}
-          style={{
-            position: "fixed",
-            top: "110px",
-            right: "30px",
-            textAlign: "left"
-          }}
-        >
+        <Affix onClick={e => e.preventDefault()}>
           <div className="affix-box">
             <Anchor
+              className="max-w-xs"
               getContainer={() => document.getElementById("anchor-box")}
-              style={{ maxWidth: "191px" }}
             >
               {renderLink(outline)}
             </Anchor>

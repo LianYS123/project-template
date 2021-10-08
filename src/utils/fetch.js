@@ -1,8 +1,5 @@
-import history from "./history";
 import i from "react-intl-universal";
 import { notification } from "antd";
-
-import routers from "config/routers";
 
 const xFetch = function (url, options = {}, config = {}) {
   let { method = "GET", body = {}, ...otherOps } = options;
@@ -42,8 +39,6 @@ const xFetch = function (url, options = {}, config = {}) {
       const { code = "", message = i.get("SERVICE_API_ERR") } = data;
       if (code === "0000") {
         return data;
-      } else if (code === "LGN4001000") {
-        history.push(routers.LOGIN);
       } else if (autoHandleError) {
         notification.error({ message });
       }

@@ -1,33 +1,54 @@
-import { Select, Typography } from "antd";
+import { Select } from "antd";
+import routers from "config/routers";
 import { useLanguage } from "hooks";
+import { useHistory } from "react-router";
+
+const LanguageSelection = () => {
+  const { setLanguage, language } = useLanguage();
+  <Select
+    onChange={lang => setLanguage(lang)}
+    value={language}
+    options={[
+      {
+        label: "Chinese",
+        value: "zh_CN"
+      },
+      {
+        label: "English",
+        value: "en_US"
+      }
+    ]}
+  />;
+};
 
 // header
 const AppHeader = () => {
-  const { setLanguage, language } = useLanguage();
+  const history = useHistory();
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
-        <Typography.Title level={3} style={{ color: "white", margin: 0 }}>
-          Smart
-        </Typography.Title>
-      </div>
-      <div style={{ flex: 1, textAlign: "right" }}>
-        <Select
-          onChange={lang => setLanguage(lang)}
-          value={language}
-          options={[
-            {
-              label: "Chinese",
-              value: "zh_CN"
-            },
-            {
-              label: "English",
-              value: "en_US"
-            }
-          ]}
+    <header className="flex justify-between items-center px-14 py-4 shadow">
+      <div className="space-x-6">
+        <span className="text-lg">BLOG</span>
+        {/* <input className="w-48 h-8" type="text"  */}
+        <input
+          placeholder="Search"
+          className="border rounded py-2 px-3 shadow w-56 h-8 border-transparent focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
         />
       </div>
-    </div>
+      <div className="space-x-2 text-base">
+        <button
+          onClick={() => history.push(routers.EDITOR)}
+          className="hover:underline"
+        >
+          写文章
+        </button>
+        <button
+          onClick={() => history.push(routers.LOGIN)}
+          className="hover:underline"
+        >
+          登录
+        </button>
+      </div>
+    </header>
   );
 };
 

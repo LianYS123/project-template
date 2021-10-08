@@ -1,7 +1,7 @@
 const routers = {
   LOGIN: "/login",
+  EDITOR: "/editor",
   HOME: "/pages/home",
-  EDITOR: "/pages/editor",
   ARTICLE: "pages/article"
 };
 

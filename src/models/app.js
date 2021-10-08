@@ -1,10 +1,8 @@
-import sidebar from "config/sidebar";
-
 const model = {
   namespace: "app",
 
   state: {
-    sidebar: sidebar,
+    sidebar: [],
     loadingApp: false,
     language: localStorage.getItem("language") || "zh_CN"
   },
