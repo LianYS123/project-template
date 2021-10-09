@@ -3,7 +3,8 @@ const model = {
 
   state: {
     sidebar: [],
-    loadingApp: false
+    loadingApp: false,
+    local: localStorage.getItem("local") || "en"
   },
 
   reducers: {

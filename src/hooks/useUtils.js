@@ -8,6 +8,9 @@ import {
 } from "react";
 import isEqual from "fast-deep-equal";
 
+import { useIntl } from "react-intl";
+import { notification } from "antd";
+
 /**
  * @description: 自定义useEffect的更新逻辑
  * @param {EffectCallback} effect 作用
@@ -80,4 +83,30 @@ export const useModalAction = initialProps => {
     visible: flag,
     ...props
   };
+};
+
+export const useMessageUtils = () => {
+  const intl = useIntl();
+
+  const showSuccess = ({ id, message }) => {
+    notification.success({
+      message:
+        message ||
+        intl.formatMessage({
+          id
+        })
+    });
+  };
+
+  const showError = ({ id, message }) => {
+    notification.error({
+      message:
+        message ||
+        intl.formatMessage({
+          id
+        })
+    });
+  };
+
+  return { showSuccess, showError };
 };

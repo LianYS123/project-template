@@ -26,5 +26,5 @@ module.exports = {
     "no-console": "warn",
     "no-unused-vars": "off"
   },
-  plugins: ["react", "react-hooks"]
+  plugins: ["react", "react-hooks", "formatjs"]
 };

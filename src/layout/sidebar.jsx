@@ -1,10 +1,14 @@
 import MenuList from "components/menuList";
-import { useSidebar } from "hooks";
+import routers from "config/routers";
+import { useIntl } from "react-intl";
 
 // 侧边栏
 const Sidebar = () => {
-  const { sidebar } = useSidebar();
-  return <MenuList menus={sidebar} />;
+  const intl = useIntl();
+  const sidebar = [
+    { name: intl.formatMessage({ id: "sidebar_home" }), path: routers.HOME }
+  ];
+  return <MenuList className="h-full" menus={sidebar} />;
 };
 
 export default Sidebar;

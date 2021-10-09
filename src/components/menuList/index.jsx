@@ -23,7 +23,7 @@ const MenuList = ({ menus = [], ...props }) => {
       </Menu>
     );
   };
-  return <div>{renderMenuList(menus)}</div>;
+  return renderMenuList(menus);
 };
 
 export default MenuList;
