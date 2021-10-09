@@ -3,10 +3,12 @@ import { useMutation } from "hooks";
 import routers from "config/routers";
 import { ACCOUNT_LOGIN } from "api/login";
 import { useHistory } from "react-router";
+import { useIntl } from "react-intl";
 
 const Login = () => {
   const [submit, { loading }] = useMutation(ACCOUNT_LOGIN);
   const history = useHistory();
+  const intl = useIntl();
 
   const handleLogin = async values => {
     const realValues = {
@@ -25,25 +27,12 @@ const Login = () => {
 
   return (
     <Form
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        overflow: "auto"
-      }}
+      className="container mx-auto h-full overflow-auto"
       onFinish={handleLogin}
     >
-      <div
-        style={{
-          width: "50%",
-          maxWidth: 500,
-          minWidth: 300,
-          transform: "translateY(-20%)"
-        }}
-      >
-        <Typography.Title style={{ textAlign: "center" }} level={2}>
-          Blog
+      <div className="w-1/2 mx-auto my-52">
+        <Typography.Title className="text-center" level={2}>
+          {intl.formatMessage({ id: "APP_NAME" })}
         </Typography.Title>
         <Form.Item name={"account"} rules={[{ required: true }]}>
           <Input size="large" placeholder="Account" />
@@ -60,7 +49,7 @@ const Login = () => {
           htmlType="submit"
           type="primary"
         >
-          登录
+          {intl.formatMessage({ id: "LOGIN" })}
         </Button>
       </div>
     </Form>
