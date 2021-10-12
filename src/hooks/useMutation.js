@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import { useMessageUtils } from "hooks";
 import { useState } from "react";
 import { getAPIMethod } from "utils/apiUtils";
@@ -33,7 +34,11 @@ export const useMutation = (service, initialData, config = {}) => {
           showSuccess({ id: actionMessageMap[method] });
         }
       } else if (autoHandleError) {
-        showError({ id: "SERVICE_API_ERR", message });
+        if (message) {
+          notification.error(message);
+        } else {
+          showError({ id: "SERVICE_API_ERR" });
+        }
       }
 
       setLoading(false);

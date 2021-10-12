@@ -85,28 +85,30 @@ export const useModalAction = initialProps => {
   };
 };
 
+/**
+ * @description: 国际化消息提示
+ * @param {*}
+ * @return {{showSuccess: Function, showError: Function, showMessage: Function}}
+ */
 export const useMessageUtils = () => {
   const intl = useIntl();
 
-  const showSuccess = ({ id, message }) => {
-    notification.success({
-      message:
-        message ||
-        intl.formatMessage({
-          id
-        })
+  const showMessage = (method, { id, ...rest }) => {
+    notification[method]({
+      message: intl.formatMessage({
+        id
+      }),
+      ...rest
     });
   };
 
-  const showError = ({ id, message }) => {
-    notification.error({
-      message:
-        message ||
-        intl.formatMessage({
-          id
-        })
-    });
+  const showSuccess = params => {
+    showMessage("success", params);
   };
 
-  return { showSuccess, showError };
+  const showError = params => {
+    showMessage("error", params);
+  };
+
+  return { showSuccess, showError, showMessage };
 };
