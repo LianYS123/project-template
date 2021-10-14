@@ -1,5 +1,5 @@
-import React from "react";
-import { router, useSelector } from "dva";
+import React, { useEffect } from "react";
+import { router, useSelector, useDispatch } from "dva";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
@@ -10,10 +10,22 @@ import DVA from "./models";
 
 import "./app.less";
 import { antdLocales, locales } from "config/locales";
+import { useRequest } from "hooks";
+import { CONFIG_APP } from "services/API";
 
 const { Router, Route, Switch, Redirect } = router;
 
+const useAppConfig = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: "app/getConfig"
+    });
+  }, []);
+};
+
 const AppRoutes = () => {
+  useAppConfig();
   return (
     <Switch>
       <Route path={routers.LOGIN} component={loadable("login")} />

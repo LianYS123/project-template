@@ -112,3 +112,55 @@ export const useMessageUtils = () => {
 
   return { showSuccess, showError, showMessage };
 };
+
+/**
+ * @description: 自动递减计时器
+ * @param {Object} config
+ * @param {Object} config.countFrom
+ * @param {Object} config.countTo
+ * @param {Object} config.interval
+ * @param {Object} config.autoStart
+ * @return {*}
+ */
+export const useCountDown = ({
+  countFrom = 60,
+  countTo = 0,
+  interval = 1000,
+  autoStart = false
+} = {}) => {
+  const [count, setCount] = useState(countFrom);
+  const [isPaused, setPaused] = useState(!autoStart);
+  const timerRef = useRef(null);
+  const decreaseRef = useRef();
+
+  const start = () => {
+    setPaused(false);
+  };
+  const pause = () => {
+    setPaused(true);
+  };
+  const reset = () => {
+    clearInterval(timerRef.current);
+    setPaused(true);
+    setCount(countFrom);
+  };
+
+  decreaseRef.current = () => {
+    if (count > countTo) {
+      setCount(c => c - 1);
+    } else {
+      reset();
+    }
+  };
+  useEffect(() => {
+    if (isPaused) {
+      clearInterval(timerRef.current);
+    } else {
+      timerRef.current = setInterval(() => {
+        decreaseRef.current(); // 定时器内部使用ref防止闭包
+      }, interval);
+    }
+    return () => clearInterval(timerRef.current); // 清除定时器
+  }, [isPaused]);
+  return { count, start, pause, isPaused, reset };
+};

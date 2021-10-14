@@ -1,5 +1,11 @@
 import { parseAPI } from "./apiUtils";
 
+const langMap = {
+  "zh-CN": "CN",
+  "en-US": "EN",
+  "ja-JP": "JP"
+};
+
 const xFetch = function (url, data, options = {}) {
   const { parsedUrl, method, parsedData } = parseAPI(url, data);
   const headers = {};
@@ -10,7 +16,8 @@ const xFetch = function (url, data, options = {}) {
     method,
     headers: {
       Authorization: token,
-      lang,
+      "x-lang": lang,
+      lang: lang,
       "Content-Type": "application/json",
       ...headers
     },

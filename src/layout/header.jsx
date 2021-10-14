@@ -1,39 +1,7 @@
+import LanguageSelection from "components/languageSelection";
 import routers from "config/routers";
 import { useIntl } from "react-intl";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Select } from "antd";
-
-const LanguageSelection = () => {
-  const { local } = useSelector(({ app }) => app);
-  const dispatch = useDispatch();
-  const setLanguage = local => {
-    if (local) {
-      localStorage.setItem("local", local);
-      dispatch({
-        type: "app/setState",
-        payload: { local }
-      });
-    }
-  };
-  return (
-    <Select
-      onChange={setLanguage}
-      value={local}
-      className="w-32"
-      options={[
-        {
-          label: "简体中文",
-          value: "zh"
-        },
-        {
-          label: "English",
-          value: "en"
-        }
-      ]}
-    />
-  );
-};
 
 // header
 const AppHeader = () => {
@@ -43,7 +11,7 @@ const AppHeader = () => {
     <header className="flex justify-between items-center px-8 py-4 shadow z-10">
       <div className="space-x-6">
         <span className="text-lg">
-          {intl.formatMessage({ id: "APP_NAME" })}
+          {intl.formatMessage({ id: "WEBSITE_NAME" })}
         </span>
         {/* <input
           placeholder="Search"

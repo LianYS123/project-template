@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
+    "react/jsx-no-undef": 2,
     "react-hooks/rules-of-hooks": 0, // Checks rules of Hooks
     "react-hooks/exhaustive-deps": 0, // Checks effect dependencies
     "linebreak-style": "off",

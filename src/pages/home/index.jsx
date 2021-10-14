@@ -1,8 +1,8 @@
-import { useIntl } from "react-intl";
+import React from "react";
 
-const Home = () => {
-  const intl = useIntl();
-  return <div>{intl.formatMessage({ id: "APP_LANG" })}</div>;
-};
+function Home(props) {
+  // 暂时没有主页
+  return <div>Home</div>;
+}
 
 export default Home;

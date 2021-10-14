@@ -6,7 +6,7 @@ import { useIntl } from "react-intl";
 const Sidebar = () => {
   const intl = useIntl();
   const sidebar = [
-    { name: intl.formatMessage({ id: "sidebar_home" }), path: routers.HOME }
+    // { name: intl.formatMessage({ id: "sidebar_home" }), path: routers.HOME }
   ];
   return <MenuList className="h-full" menus={sidebar} />;
 };
