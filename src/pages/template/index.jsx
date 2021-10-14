@@ -4,15 +4,16 @@ import { EditOutlined } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 import { useDocAuth, useHtmlAndOutline } from "./hooks";
 
-import "./index.less";
+import styles from "./index.module.less";
+import { useLocation, useParams } from "react-router";
+import { parse } from "query-string";
 
 const { Link } = Anchor;
 
 function Template({ history }) {
-  const { location } = history;
-  const { query } = location;
-  const { resourcePath } = query;
-  const resourceId = location.pathname.replace("/template/", "");
+  const { id: resourceId } = useParams();
+  const { search } = useLocation();
+  const { menu: menuId, resourcePath } = parse(search);
   const intl = useIntl();
 
   const auth = useDocAuth();
@@ -23,7 +24,7 @@ function Template({ history }) {
       pathname: "/editor",
       query: {
         resourceId,
-        menuId: query.menu,
+        menuId,
         resourcePath: resourcePath
       }
     });
@@ -46,6 +47,7 @@ function Template({ history }) {
 
   return (
     <div
+      className={styles.template}
       id="anchor-box"
       style={{ maxWidth: "100%", maxHeight: "100%", overflow: "auto" }}
     >

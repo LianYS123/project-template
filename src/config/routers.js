@@ -2,7 +2,7 @@ const routers = {
   LOGIN: "/login",
   EDITOR: "/editor",
   HOME: "/pages/home",
-  ARTICLE: "pages/article"
+  TEMPLATE: "/pages/template/:id"
 };
 
 export default routers;

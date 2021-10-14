@@ -6,7 +6,7 @@ const LanguageSelection = () => {
   const dispatch = useDispatch();
   const setLanguage = local => {
     if (local) {
-      localStorage.setItem("local", local);
+      localStorage.setItem("lang", local);
       dispatch({
         type: "app/setState",
         payload: { local }
@@ -21,11 +21,11 @@ const LanguageSelection = () => {
       options={[
         {
           label: "简体中文",
-          value: "zh"
+          value: "zh_CN"
         },
         {
           label: "English",
-          value: "en"
+          value: "en_US"
         }
       ]}
     />

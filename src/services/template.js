@@ -1,4 +1,3 @@
-import { serializeQuery } from "utils";
 import { RESOURCE_HTML, RESOURCE_DOWN_LIST, TEMPLATE_EDIT_AUTH } from "./API";
 import xFetch from "utils/fetch";
 
@@ -20,7 +19,6 @@ export function getUrlList(list) {
 }
 
 // 获取权限
-export function getAuth(payload) {
-  const url = `${TEMPLATE_EDIT_AUTH}${serializeQuery(payload)}`;
-  return xFetch(url);
+export function getAuth(data) {
+  return xFetch(TEMPLATE_EDIT_AUTH, data);
 }

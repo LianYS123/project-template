@@ -1,4 +1,4 @@
-import { stringify as serializeQuery } from "query-string";
+import { stringify as serializeQuery, stringifyUrl } from "query-string";
 
 const methodReg = /^(get|post|put|delete)/i;
 
@@ -25,7 +25,7 @@ export const parseAPI = (url, data) => {
   }
 
   if (method === "GET") {
-    parsedUrl = `${parsedUrl}?${serializeQuery(data)}`;
+    parsedUrl = stringifyUrl({ url: parsedUrl, query: data });
   }
 
   return {

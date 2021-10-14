@@ -34,6 +34,16 @@ export const languageListMap = languageList.reduce(
   {}
 );
 
+export const languageCodeMap = {
+  zh_CN: "CN",
+  en_US: "EN"
+};
+
+export const localMap = {
+  zh_CN: "zh",
+  en_US: "en"
+};
+
 export const fileTypesMap = {
   picture: ["jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG", "GIF"],
   video: ["mp4", "MP4"]

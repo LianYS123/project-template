@@ -4,8 +4,9 @@ import { getAuth } from "services/template";
 
 export const useDocAuth = () => {
   const { data } = useRequest({
-    method: getAuth,
+    service: getAuth,
     necessaryParams: { type: "ui", owners: "mer", auth: "ui.mer.menu:docEdit" },
+    autoHandleError: false,
     initialData: {
       perCodes: []
     }
@@ -16,8 +17,9 @@ export const useDocAuth = () => {
 
 export const useHtmlAndOutline = resourceId => {
   const { data, loading } = useRequest({
-    method: getHtmlAndOutline,
+    service: getHtmlAndOutline,
     necessaryParams: { resourceId },
+    autoHandleError: false,
     ready: !!resourceId && resourceId !== "undefined",
     initialData: { html: "", outline: [] }
   });

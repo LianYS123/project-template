@@ -10,8 +10,7 @@ import DVA from "./models";
 
 import "./app.less";
 import { antdLocales, locales } from "config/locales";
-import { useRequest } from "hooks";
-import { CONFIG_APP } from "services/API";
+import { localMap } from "constants";
 
 const { Router, Route, Switch, Redirect } = router;
 
@@ -33,6 +32,7 @@ const AppRoutes = () => {
         <AppLayout>
           <Switch>
             <Route path={routers.HOME} component={loadable("home")} />
+            <Route path={routers.TEMPLATE} component={loadable("template")} />
             <Redirect to={routers.HOME} />
           </Switch>
         </AppLayout>
@@ -49,7 +49,7 @@ const WrapApp = props => {
       <ConfigProvider locale={antdLocales}>
         <IntlProvider
           messages={locales[local]}
-          locale={local}
+          locale={localMap[local]}
           defaultLocale="en"
         >
           <AppRoutes />

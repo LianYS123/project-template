@@ -9,7 +9,7 @@ import { getTemplate } from "utils/article";
 export const useEditorState = resourceId => {
   const [editorState, setEditorState] = useState();
   const { loading, data: template } = useRequest({
-    method: () => getTemplate(resourceId),
+    service: () => getTemplate(resourceId),
     ready: !!resourceId
   });
 

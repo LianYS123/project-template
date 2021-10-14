@@ -86,9 +86,9 @@ export const useMutation = (service, initialData, config = {}) => {
     } catch (e) {
       setLoading(false);
       setError(e);
-      if (autoHandleError) {
-        showError({ id: "SERVICE_API_ERR" });
-      }
+      // if (autoHandleError) {
+      //   showError({ id: "SERVICE_API_ERR" });
+      // }
       // eslint-disable-next-line no-console
       console.error(e);
     }
