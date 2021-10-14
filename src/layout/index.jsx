@@ -21,14 +21,15 @@ const useInitUserInfo = () => {
 
 const useInitMenu = () => {
   const dispatch = useDispatch();
-  const { userId } = useSelector(({ app }) => app.userInfo);
+  const { userInfo, local } = useSelector(({ app }) => app);
+  const { userId } = userInfo;
   useEffect(() => {
     if (userId) {
       dispatch({
         type: "app/getMenu"
       });
     }
-  }, [userId]);
+  }, [userId, local]);
 };
 
 // 页面布局

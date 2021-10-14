@@ -20,7 +20,6 @@ const Sidebar = () => {
       url: basePath,
       query: { menu: menuId, resourcePath }
     });
-    console.log(path);
     history.push(path);
   };
   return (

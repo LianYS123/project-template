@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
 
-const LanguageSelection = () => {
+const LanguageSelection = props => {
   const { local } = useSelector(({ app }) => app);
   const dispatch = useDispatch();
   const setLanguage = local => {
@@ -28,6 +28,7 @@ const LanguageSelection = () => {
           value: "en_US"
         }
       ]}
+      {...props}
     />
   );
 };
