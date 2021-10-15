@@ -36,8 +36,8 @@ module.exports = {
   entry: path.join(src, "index.jsx"),
   stats: "errors-only",
   output: {
-    filename: `js/[name].bundle.[chunkhash:7].js`,
-    chunkFilename: `js/[name].bundle.[chunkhash:7].js`,
+    filename: `pages/js/[name].bundle.[chunkhash:7].js`,
+    chunkFilename: `pages/js/[name].bundle.[chunkhash:7].js`,
     path: path.resolve(__dirname, "../output")
   },
 

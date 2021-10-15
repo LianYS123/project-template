@@ -27,7 +27,7 @@ module.exports = merge(baseConfig, {
     port: devPort,
     historyApiFallback: true,
     static: {
-      publicPath: "/"
+      publicPath: "/pages"
     },
     watchFiles: [proxyFile],
     proxy: getProxy()

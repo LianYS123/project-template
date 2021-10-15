@@ -4,7 +4,6 @@ const baseConfig = require("./webpack.config");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const dirname = path.resolve(__dirname);
 const { merge } = require("webpack-merge");
 
 module.exports = merge(baseConfig, {
@@ -12,11 +11,12 @@ module.exports = merge(baseConfig, {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `css/styles.[chunkhash].css`,
-      ignoreOrder: true
+      ignoreOrder: true,
+      // publicPath: "/pages/",
+      filename: `pages/styles.[chunkhash].css`
     }),
     new ZipPlugin({
-      filename: `${dirname}.zip`
+      filename: `docLib.zip`
     })
   ],
   optimization: {
