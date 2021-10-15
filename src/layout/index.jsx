@@ -54,12 +54,10 @@ const AppLayout = ({ children }) => {
     <div className="h-full flex flex-col">
       <AppHeader />
       <div className="flex flex-1 overflow-auto">
-        <div className="w-64 h-full overflow-auto">
+        <div className="w-64 flex-shrink-0 h-full overflow-auto">
           <Sidebar />
         </div>
-        <main className="container px-8 py-4 h-full overflow-auto">
-          {children}
-        </main>
+        <main className="h-full flex-auto overflow-auto">{children}</main>
       </div>
     </div>
   );

@@ -47,39 +47,35 @@ function Template() {
   };
 
   return (
-    <div
-      id="anchor-box"
-      style={{ maxWidth: "100%", maxHeight: "100%", overflow: "auto" }}
-    >
-      <Spin spinning={loading} style={{ minHeight: 500, paddingTop: 30 }}>
-        <div id="htmlTemplate" dangerouslySetInnerHTML={{ __html: html }}></div>
-        {auth && (
-          <div className="edit-btn" onClick={goEdit}>
-            <EditOutlined />
-            &nbsp;
-            {resourceId == "undefined"
-              ? intl.formatMessage({ id: "ADD_ARTICLE" })
-              : intl.formatMessage({ id: "EDIT_ARTICLE" })}
+    <div id="anchor-box" className="max-w-full max-h-full overflow-auto py-8">
+      <Spin spinning={loading}>
+        <div className="flex">
+          <div className="flex-auto relative mx-14">
+            <article
+              id="htmlTemplate"
+              dangerouslySetInnerHTML={{ __html: html }}
+            ></article>
+            {auth && (
+              <Affix
+                target={() => document.getElementById("anchor-box")}
+                className="absolute right-0 top-0"
+                onClick={goEdit}
+              >
+                <div className="flex items-center hover:underline cursor-pointer">
+                  <EditOutlined className="mx-1" />
+                  {resourceId == "undefined"
+                    ? intl.formatMessage({ id: "ADD_ARTICLE" })
+                    : intl.formatMessage({ id: "EDIT_ARTICLE" })}
+                </div>
+              </Affix>
+            )}
           </div>
-        )}
-        <Affix
-          onClick={e => e.preventDefault()}
-          style={{
-            position: "fixed",
-            top: "110px",
-            right: "30px",
-            textAlign: "left"
-          }}
-        >
-          <div className="affix-box">
-            <Anchor
-              getContainer={() => document.getElementById("anchor-box")}
-              style={{ maxWidth: "191px" }}
-            >
+          <Affix className="w-48" onClick={e => e.preventDefault()}>
+            <Anchor getContainer={() => document.getElementById("anchor-box")}>
               {renderLink(outline)}
             </Anchor>
-          </div>
-        </Affix>
+          </Affix>
+        </div>
       </Spin>
     </div>
   );

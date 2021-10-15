@@ -9,7 +9,7 @@ module.exports = {
   },
   "/IMG": {
     target: "https://cloudpick-doc.oss-cn-shanghai.aliyuncs.com/",
-    // target: 'https://cloudpick-fe-test.oss-cn-shanghai.aliyuncs.com/img/',
+    // target: "https://cloudpick-fe-test.oss-cn-shanghai.aliyuncs.com/img/",
     changeOrigin: true,
     pathRewrite: { "^/IMG": "" }
   }
