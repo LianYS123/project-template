@@ -19,23 +19,23 @@ const useInitUserInfo = () => {
   }, []);
 };
 
-const useInitMenu = () => {
-  const dispatch = useDispatch();
-  const { userInfo, local } = useSelector(({ app }) => app);
-  const { userId } = userInfo;
-  useEffect(() => {
-    if (userId) {
-      dispatch({
-        type: "app/getMenu"
-      });
-    }
-  }, [userId, local]);
-};
+// const useInitMenu = () => {
+//   const dispatch = useDispatch();
+//   const { userInfo, local } = useSelector(({ app }) => app);
+//   const { userId } = userInfo;
+//   useEffect(() => {
+//     if (userId) {
+//       dispatch({
+//         type: "app/getMenu"
+//       });
+//     }
+//   }, [userId, local]);
+// };
 
 // 页面布局
 const AppLayout = ({ children }) => {
   useInitUserInfo();
-  useInitMenu();
+  // useInitMenu();
   return (
     <div className="h-full flex flex-col">
       <AppHeader />

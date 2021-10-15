@@ -32,8 +32,6 @@ const AppRoutes = () => {
         <AppLayout>
           <Switch>
             <Route path={routers.HOME} component={loadable("home")} />
-            <Route path={routers.TEMPLATE} component={loadable("template")} />
-            <Route path={routers.EDITOR} component={loadable("editor")} />
             <Route path={routers.NOT_FOUND} component={loadable("404")} />
             <Redirect to={routers.NOT_FOUND} />
           </Switch>

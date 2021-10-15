@@ -1,4 +1,4 @@
-import { getAppConfig, getMenuList, getUserInfo } from "services/app";
+import { getAppConfig, getUserInfo } from "services/app";
 
 const model = {
   namespace: "app",
@@ -32,17 +32,18 @@ const model = {
         });
       }
     },
-    *getMenu(_, { put, call }) {
-      const { menuList, code } = yield call(getMenuList);
-      if (code === "0000") {
-        yield put({
-          type: "setState",
-          payload: {
-            menuList
-          }
-        });
-      }
-    },
+    // 如果目录存储在后端，可以在这里请求
+    // *getMenu(_, { put, call }) {
+    //   const { menuList, code } = yield call(getMenuList);
+    //   if (code === "0000") {
+    //     yield put({
+    //       type: "setState",
+    //       payload: {
+    //         menuList
+    //       }
+    //     });
+    //   }
+    // },
     *getConfig(_, { put, call }) {
       const { cloudCfgList, code } = yield call(getAppConfig);
       if (code === "0000") {

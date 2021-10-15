@@ -1,5 +1,5 @@
 export default {
-  WEBSITE_NAME: "帮助中心",
+  WEBSITE_NAME: "模板项目",
   PHONE: "手机号",
   CAPTCHA: "验证码",
   GET_CAPTCHA: "获取验证码",
@@ -19,8 +19,6 @@ export default {
   LOGIN_CONFIRM: "确定登录",
   COUNT_DOWN: "倒计时",
   LOGIN: "登录",
-  ADD_ARTICLE: "新增文章",
-  EDIT_ARTICLE: "编辑文章",
   SAVE: "保存",
   BACK: "返回",
   SOURCE_CODE: "源代码",
