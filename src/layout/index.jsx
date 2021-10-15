@@ -50,7 +50,7 @@ const useInitMenu = () => {
 // 页面布局
 const AppLayout = ({ children }) => {
   useInitUserInfo();
-  useInitMenu();
+  // useInitMenu();
   return (
     <div className="h-full flex flex-col">
       <AppHeader />

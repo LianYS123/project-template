@@ -1,5 +1,5 @@
 export default {
-  WEBSITE_NAME: "Help Center",
+  WEBSITE_NAME: "Boilerplate",
   PHONE: "Mobile Number",
   CAPTCHA: "Verification Code",
   GET_CAPTCHA: "Verify",
@@ -19,8 +19,6 @@ export default {
   LOGIN_CONFIRM: "Are you sure to login",
   COUNT_DOWN: "Countdown",
   LOGIN: "LOGIN",
-  ADD_ARTICLE: "Add New Article",
-  EDIT_ARTICLE: "Edit Article",
   SAVE: "Save",
   BACK: "Back",
   SOURCE_CODE: "Source Code",
