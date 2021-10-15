@@ -4,8 +4,12 @@ const { merge } = require("webpack-merge");
 const fs = require("fs");
 const { join } = require("path");
 
+const proxyjs = join(__dirname, "../proxy.js");
+const proxyconfigjs = join(__dirname, "../proxy.js");
+const proxyFile = fs.existsSync(proxyjs) ? proxyjs : proxyconfigjs;
+
 const getProxy = () => {
-  const proxy = fs.existsSync(join(__dirname, "../proxy.js"))
+  const proxy = fs.existsSync(proxyjs)
     ? require("../proxy.js")
     : require("../proxy.config.js");
   // eslint-disable-next-line no-console
@@ -22,6 +26,10 @@ module.exports = merge(baseConfig, {
     host: "0.0.0.0",
     port: devPort,
     historyApiFallback: true,
+    static: {
+      publicPath: "/"
+    },
+    watchFiles: [proxyFile],
     proxy: getProxy()
   }
 });

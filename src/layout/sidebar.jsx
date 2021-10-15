@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 // 侧边栏
 const Sidebar = () => {
   const menus = useSelector(state => state.app.menuList);
+  // console.log(menus);
   const menuConfig = {
     menuNameKey: "menuName",
     menuChildrenKey: "nextMenuList",

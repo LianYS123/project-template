@@ -1,18 +1,26 @@
 import routers from "config/routers";
+import { useMutation } from "hooks";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { GET_USERINFO_URL, MENU } from "services/API";
+import { appSlice } from "store/app";
 import AppHeader from "./header";
 import Sidebar from "./sidebar";
 
 const useInitUserInfo = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [loadUserInfo] = useMutation(GET_USERINFO_URL);
+  const fetchUserInfo = async () => {
+    const { userInfo, code } = await loadUserInfo();
+    if (code === "0000") {
+      dispatch(appSlice.actions.setUserInfo(userInfo));
+    }
+  };
   useEffect(() => {
     if (localStorage.getItem("acc")) {
-      dispatch({
-        type: "app/getUserInfo"
-      });
+      fetchUserInfo();
     } else {
       history.push(routers.LOGIN);
     }
@@ -23,11 +31,17 @@ const useInitMenu = () => {
   const dispatch = useDispatch();
   const { userInfo, local } = useSelector(({ app }) => app);
   const { userId } = userInfo;
+  const [loadMenu] = useMutation(MENU);
+
+  const fetchMenu = async () => {
+    const { menuList, code } = await loadMenu();
+    if (code === "0000") {
+      dispatch(appSlice.actions.setMenu(menuList));
+    }
+  };
   useEffect(() => {
     if (userId) {
-      dispatch({
-        type: "app/getMenu"
-      });
+      fetchMenu();
     }
   }, [userId, local]);
 };

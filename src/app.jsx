@@ -1,25 +1,37 @@
 import React, { useEffect } from "react";
-import { router, useSelector, useDispatch } from "dva";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
 import loadable from "utils/loadable.js";
 import AppLayout from "layout";
 import routers from "config/routers";
-import DVA from "./models";
+import store from "./store";
 
 import "./app.less";
 import { antdLocales, locales } from "config/locales";
 import { localMap } from "constants";
-
-const { Router, Route, Switch, Redirect } = router;
+import { Provider, useDispatch, useSelector } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import { useMutation } from "hooks";
+import { CONFIG_APP } from "services/API";
+import { appSlice } from "store/app";
 
 const useAppConfig = () => {
   const dispatch = useDispatch();
+  const [loadConfg] = useMutation(CONFIG_APP);
+  const fetchConfig = async () => {
+    const { cloudCfgList, code } = await loadConfg();
+    if (code === "0000") {
+      dispatch(appSlice.actions.setConfig(cloudCfgList));
+    }
+  };
   useEffect(() => {
-    dispatch({
-      type: "app/getConfig"
-    });
+    fetchConfig();
   }, []);
 };
 
@@ -44,10 +56,10 @@ const AppRoutes = () => {
   );
 };
 
-const WrapApp = props => {
+const App = () => {
   const { local } = useSelector(({ app }) => app);
   return (
-    <Router {...props}>
+    <Router>
       <ConfigProvider locale={antdLocales}>
         <IntlProvider
           messages={locales[local]}
@@ -61,8 +73,12 @@ const WrapApp = props => {
   );
 };
 
-DVA.router(({ history }) => <WrapApp history={history} />);
+const WrapApp = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
 
-const AppContainer = DVA.start();
-
-export default AppContainer;
+export default WrapApp;

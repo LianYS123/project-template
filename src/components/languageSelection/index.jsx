@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
+import { appSlice } from "store/app";
 
 const LanguageSelection = props => {
   const { local } = useSelector(({ app }) => app);
@@ -7,10 +8,7 @@ const LanguageSelection = props => {
   const setLanguage = local => {
     if (local) {
       localStorage.setItem("lang", local);
-      dispatch({
-        type: "app/setState",
-        payload: { local }
-      });
+      dispatch(appSlice.actions.setLocal(local));
     }
   };
   return (

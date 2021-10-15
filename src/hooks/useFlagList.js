@@ -1,4 +1,4 @@
-import { useSelector } from "dva";
+import { useSelector } from "react-redux";
 
 const getFlagImg = key =>
   `https://cloudpick.oss-cn-shanghai.aliyuncs.com/nationalflag/app/${key}.png`;

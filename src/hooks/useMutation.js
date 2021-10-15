@@ -21,11 +21,8 @@ const useRequestErrorHandler = () => {
       }
     };
     if (code === "LGN4001000") {
-      const { acc = "" } = cookie.get();
-      if (acc) {
-        cookie.set("acc", "");
-        localStorage.setItem("acc", "");
-      }
+      localStorage.removeItem("acc");
+      cookie.remove("acc");
       showErrorMessage();
       history.push("/login");
     } else {

@@ -63,7 +63,6 @@ const cleanUrl = url => {
 
 // 提交修改之前统一对url再做剥离
 export const cleanUrlBeforeSubmit = (nodeList = []) => {
-  console.log(nodeList);
   nodeList.length &&
     nodeList.forEach(node => {
       node.src = cleanUrl(node.src);

@@ -34,7 +34,7 @@ const getExtraLoaders = ({ modules = false } = {}) => {
 // 基础配置
 module.exports = {
   entry: path.join(src, "index.jsx"),
-
+  stats: "errors-only",
   output: {
     filename: `js/[name].bundle.[chunkhash:7].js`,
     chunkFilename: `js/[name].bundle.[chunkhash:7].js`,
@@ -120,7 +120,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../index.html"),
       filename: "index.html",
-      inject: "body"
+      inject: "body",
+      publicPath: "/"
     })
   ].filter(Boolean),
 
