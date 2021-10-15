@@ -1,4 +1,5 @@
 // 处理存储在oss的文章
+import { SPLITER } from "constants";
 import $ from "jquery";
 import { getOssHtml, getUrlList } from "services/template";
 
@@ -62,6 +63,7 @@ const cleanUrl = url => {
 
 // 提交修改之前统一对url再做剥离
 export const cleanUrlBeforeSubmit = (nodeList = []) => {
+  console.log(nodeList);
   nodeList.length &&
     nodeList.forEach(node => {
       node.src = cleanUrl(node.src);
@@ -108,8 +110,8 @@ export const enrichHtml = async html => {
 export const cleanHtml = html => {
   const doc = document.createElement("div");
   doc.innerHTML = html;
-  const imgNodeList = doc.getElementsByTagName("img");
-  const videoList = doc.getElementsByTagName("video");
+  const imgNodeList = [...doc.getElementsByTagName("img")];
+  const videoList = [...doc.getElementsByTagName("video")];
   // 去掉query参数
   cleanUrlBeforeSubmit(imgNodeList);
   cleanUrlBeforeSubmit(videoList);
@@ -162,8 +164,6 @@ export const cleanRaw = _raw => {
   changeRawUrl(raw, cleanUrl);
   return JSON.stringify(raw);
 };
-
-export const SPLITER = "###e76f825###";
 
 export const getHtmlAndOutline = async ({ resourceId }) => {
   const data = await getOssHtml(resourceId);

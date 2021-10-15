@@ -10,6 +10,7 @@ export const useEditorState = resourceId => {
   const [editorState, setEditorState] = useState();
   const { loading, data: template } = useRequest({
     service: () => getTemplate(resourceId),
+    autoHandleError: false,
     ready: !!resourceId
   });
 

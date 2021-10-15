@@ -33,11 +33,13 @@ const AppRoutes = () => {
           <Switch>
             <Route path={routers.HOME} component={loadable("home")} />
             <Route path={routers.TEMPLATE} component={loadable("template")} />
-            <Redirect to={routers.HOME} />
+            <Route path={routers.EDITOR} component={loadable("editor")} />
+            <Route path={routers.NOT_FOUND} component={loadable("404")} />
+            <Redirect to={routers.NOT_FOUND} />
           </Switch>
         </AppLayout>
       </Route>
-      <Redirect to={routers.HOME} />
+      <Redirect to={routers.NOT_FOUND} />
     </Switch>
   );
 };

@@ -26,9 +26,9 @@ export const RESOURCE_DOWN_LIST = list =>
   `/sto/rest/api/v2/resource/url/list?list=${list}`;
 
 // 修改页面
-export const EDIT_TEMPLATE = "/sto/rest/operator/api/v1/doc/resource/edit";
+export const EDIT_TEMPLATE = "POST /sto/rest/operator/api/v1/doc/resource/edit";
 
-export const ADD_TEMPLATE = "/sto/rest/operator/api/v1/doc/resource/add";
+export const ADD_TEMPLATE = "POST /sto/rest/operator/api/v1/doc/resource/add";
 
 export const TEMPLATE_EDIT_AUTH =
   "/cloudpick/rest/admin/api/v1/logon/query/userpmt";

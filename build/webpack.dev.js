@@ -21,6 +21,7 @@ module.exports = merge(baseConfig, {
   devServer: {
     host: "0.0.0.0",
     port: devPort,
+    historyApiFallback: true,
     proxy: getProxy()
   }
 });

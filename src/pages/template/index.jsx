@@ -4,30 +4,31 @@ import { EditOutlined } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 import { useDocAuth, useHtmlAndOutline } from "./hooks";
 
-import styles from "./index.module.less";
-import { useLocation, useParams } from "react-router";
-import { parse } from "query-string";
+import { useHistory, useLocation, useParams } from "react-router";
+import { parse, stringify } from "query-string";
+import routers from "config/routers";
 
 const { Link } = Anchor;
 
-function Template({ history }) {
+function Template() {
   const { id: resourceId } = useParams();
   const { search } = useLocation();
-  const { menu: menuId, resourcePath } = parse(search);
+  const { menu, resourcePath } = parse(search);
   const intl = useIntl();
+  const history = useHistory();
+
+  const editorSearch = stringify({
+    resourceId,
+    menu,
+    resourcePath: resourcePath
+  });
 
   const auth = useDocAuth();
   const { html, outline, loading } = useHtmlAndOutline(resourceId);
 
   const goEdit = () => {
-    history.push({
-      pathname: "/editor",
-      query: {
-        resourceId,
-        menuId,
-        resourcePath: resourcePath
-      }
-    });
+    const pathname = routers.EDITOR + "?" + editorSearch;
+    history.push(pathname);
   };
 
   const renderLink = list => {
@@ -47,7 +48,6 @@ function Template({ history }) {
 
   return (
     <div
-      className={styles.template}
       id="anchor-box"
       style={{ maxWidth: "100%", maxHeight: "100%", overflow: "auto" }}
     >
