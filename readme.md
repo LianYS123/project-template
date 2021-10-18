@@ -1,7 +1,7 @@
-### vite + react + antd + dva + css module/less/tailwind + eslint 项目基本框架
+### vite + react + antd + redux + css module/less/tailwind + eslint 项目基本框架
 
 react 项目快速开发脚手架
-实现了基本的登录功能和请求后端配置数据并存储到 dva 中
+实现了基本的登录功能和请求后端配置数据并存储到全局
 
 ### 一些实践方案：
 
@@ -20,7 +20,8 @@ xFetch("GET /api/user/{id}", { id: 1, username: "abc" }) -> fetch("/api/user/1?u
 
 #### css
 
-同时支持 tailwind css 和 less 以及 css module
+同时支持 tailwind css 和 less 以及 css module  
+[tailwindcss](https://tailwindcss.com/)
 
 #### 状态管理
 
