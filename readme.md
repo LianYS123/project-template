@@ -1,6 +1,6 @@
-### webpack + react + antd + dva + css module/less/tailwind + eslint 项目基本框架
+### vite + react + antd + dva + css module/less/tailwind + eslint 项目基本框架
 
-yunna react 项目快速开发脚手架
+react 项目快速开发脚手架
 实现了基本的登录功能和请求后端配置数据并存储到 dva 中
 
 ### 一些实践方案：
@@ -24,11 +24,17 @@ xFetch("GET /api/user/{id}", { id: 1, username: "abc" }) -> fetch("/api/user/1?u
 
 #### 状态管理
 
-使用 dva 管理全局状态，除了必要数据，其他状态不推荐存储在 dva
+使用 redux 管理全局状态，除了必要数据，其他状态不推荐存储在全局
+
+参考:
+
+[redux](http://cn.redux.js.org/introduction/getting-started)
+[redux-toolkit](https://redux-toolkit.js.org/introduction/getting-started)
 
 #### 国际化
 
-使用 react-intl, 所有的国际化通过其提供的`useIntl`hooks 进行
+使用 react-intl, 所有的国际化通过其提供的`useIntl`hooks 进行  
+[formmate.js](https://formatjs.io/docs/getting-started/installation)
 
 #### 布局
 
