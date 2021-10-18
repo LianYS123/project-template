@@ -1,5 +1,5 @@
 import React from "react";
-import routers from "config/routers";
+import routers from "routers";
 import { useMutation } from "hooks";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -28,29 +28,9 @@ const useInitUserInfo = () => {
   }, []);
 };
 
-// const useInitMenu = () => {
-//   const dispatch = useDispatch();
-//   const { userInfo, local } = useSelector(({ app }) => app);
-//   const { userId } = userInfo;
-//   const [loadMenu] = useMutation(MENU);
-
-//   const fetchMenu = async () => {
-//     const { menuList, code } = await loadMenu();
-//     if (code === "0000") {
-//       dispatch(appSlice.actions.setMenu(menuList));
-//     }
-//   };
-//   useEffect(() => {
-//     if (userId) {
-//       fetchMenu();
-//     }
-//   }, [userId, local]);
-// };
-
 // 页面布局
 const AppLayout = ({ children }) => {
   useInitUserInfo();
-  // useInitMenu();
   return (
     <div className="h-full flex flex-col">
       <AppHeader />

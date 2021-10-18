@@ -1,60 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
-import AppLayout from "layout";
-import routers from "config/routers";
 import store from "models";
 
-import "./app.less";
-import { antdLocales, locales } from "config/locales";
 import { localMap } from "constants";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
-import { useMutation } from "hooks";
-import { CONFIG_APP } from "services/API";
-import { appSlice } from "models/app";
+import { Provider, useSelector } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Login from "pages/login";
-import Home from "pages/home";
-import NotFound from "pages/404";
+// 国际化
+import en_US from "locales/en_US";
+import zh_CN from "locales/zh_CN";
 
-const useAppConfig = () => {
-  const dispatch = useDispatch();
-  const [loadConfg] = useMutation(CONFIG_APP);
-  const fetchConfig = async () => {
-    const { cloudCfgList, code } = await loadConfg();
-    if (code === "0000") {
-      dispatch(appSlice.actions.setConfig(cloudCfgList));
-    }
-  };
-  useEffect(() => {
-    fetchConfig();
-  }, []);
+import antd_zh_CN from "antd/lib/locale/zh_CN";
+import antd_en_US from "antd/lib/locale/en_US";
+import AppRoutes from "routers/AppRoutes";
+
+import "./app.less";
+
+const antdLocales = {
+  zh_CN: antd_zh_CN,
+  en_US: antd_en_US
 };
 
-const AppRoutes = () => {
-  useAppConfig();
-  return (
-    <Switch>
-      <Route path={routers.LOGIN} component={Login} />
-      <Route path="/pages">
-        <AppLayout>
-          <Switch>
-            <Route path={routers.HOME} component={Home} />
-            <Route path={routers.NOT_FOUND} component={NotFound} />
-            <Redirect to={routers.NOT_FOUND} />
-          </Switch>
-        </AppLayout>
-      </Route>
-      <Redirect to={routers.NOT_FOUND} />
-    </Switch>
-  );
+const locales = {
+  en_US,
+  zh_CN
 };
 
 const App = () => {

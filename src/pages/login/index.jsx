@@ -9,7 +9,7 @@ import {
   useMutation
 } from "hooks";
 import { GET_SENDSMS_URL, SURE_SIGN_URL } from "services/API";
-import routers from "config/routers";
+import routers from "routers";
 import { ImageCodeModal } from "./ImageCodeModal";
 import { FormattedMessage, useIntl } from "react-intl";
 import { SelectChannelModal } from "./SelectChannelModal";

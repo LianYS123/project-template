@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Form, Select } from "antd";
-import routers from "config/routers";
+import routers from "routers";
 import { useMutation } from "hooks";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";

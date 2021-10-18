@@ -1,3 +1,4 @@
+// 项目通用常量存放位置
 export const languageList = [
   {
     label: "English",

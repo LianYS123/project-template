@@ -1,6 +1,6 @@
 import React from "react";
 import LanguageSelection from "components/languageSelection";
-import routers from "config/routers";
+import routers from "routers";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
