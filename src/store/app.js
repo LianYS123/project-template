@@ -7,7 +7,7 @@ export const appSlice = createSlice({
     menuList: [],
     userInfo: {},
     loadingApp: false,
-    local: localStorage.getItem("lang") || "en",
+    local: localStorage.getItem("lang") || "en_US",
     config: {}
   },
   reducers: {
