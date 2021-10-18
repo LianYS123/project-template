@@ -21,6 +21,12 @@ import { useMutation } from "hooks";
 import { CONFIG_APP } from "services/API";
 import { appSlice } from "store/app";
 
+import Login from "pages/login";
+import Editor from "pages/editor";
+import Home from "pages/home";
+import Template from "pages/template";
+import NotFound from "pages/404";
+
 const useAppConfig = () => {
   const dispatch = useDispatch();
   const [loadConfg] = useMutation(CONFIG_APP);
@@ -39,14 +45,14 @@ const AppRoutes = () => {
   useAppConfig();
   return (
     <Switch>
-      <Route path={routers.LOGIN} component={loadable("login")} />
+      <Route path={routers.LOGIN} component={Login} />
       <Route path="/pages">
         <AppLayout>
           <Switch>
-            <Route path={routers.HOME} component={loadable("home")} />
-            <Route path={routers.TEMPLATE} component={loadable("template")} />
-            <Route path={routers.EDITOR} component={loadable("editor")} />
-            <Route path={routers.NOT_FOUND} component={loadable("404")} />
+            <Route path={routers.HOME} component={Home} />
+            <Route path={routers.TEMPLATE} component={Template} />
+            <Route path={routers.EDITOR} component={Editor} />
+            <Route path={routers.NOT_FOUND} component={NotFound} />
             <Redirect to={routers.NOT_FOUND} />
           </Switch>
         </AppLayout>

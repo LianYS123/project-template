@@ -1,3 +1,4 @@
+import React from "react";
 import LanguageSelection from "components/languageSelection";
 import routers from "config/routers";
 import { useIntl } from "react-intl";

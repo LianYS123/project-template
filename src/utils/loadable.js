@@ -4,7 +4,7 @@ import Loading from "components/loading";
 const loadable = url => {
   return L({
     loading: Loading,
-    loader: () => import(`pages/${url}`)
+    loader: () => import(`../pages/${url}/index.jsx`)
   });
 };
 

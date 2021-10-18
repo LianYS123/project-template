@@ -327,6 +327,7 @@ function str2rstrUTF8(input) {
   try {
     return unescape(encodeURIComponent(input));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn("Input too large and fallback");
     return input;
   }
