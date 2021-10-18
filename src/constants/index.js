@@ -1,8 +1,3 @@
-export const IMAGE_PREFIX =
-  "https://cloudpick-doc.oss-cn-shanghai.aliyuncs.com/";
-
-export const UPLOAD_HOST = "cloudpick-doc";
-
 export const languageList = [
   {
     label: "English",
@@ -35,9 +30,4 @@ export const languageCodeMap = {
 export const localMap = {
   zh_CN: "zh",
   en_US: "en"
-};
-
-export const fileTypesMap = {
-  picture: ["jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG", "GIF"],
-  video: ["mp4", "MP4"]
 };

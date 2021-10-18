@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
-import loadable from "utils/loadable.js";
 import AppLayout from "layout";
 import routers from "config/routers";
-import store from "./store";
+import store from "models";
 
 import "./app.less";
 import { antdLocales, locales } from "config/locales";
@@ -19,12 +18,10 @@ import {
 } from "react-router-dom";
 import { useMutation } from "hooks";
 import { CONFIG_APP } from "services/API";
-import { appSlice } from "store/app";
+import { appSlice } from "models/app";
 
 import Login from "pages/login";
-import Editor from "pages/editor";
 import Home from "pages/home";
-import Template from "pages/template";
 import NotFound from "pages/404";
 
 const useAppConfig = () => {
@@ -50,8 +47,6 @@ const AppRoutes = () => {
         <AppLayout>
           <Switch>
             <Route path={routers.HOME} component={Home} />
-            <Route path={routers.TEMPLATE} component={Template} />
-            <Route path={routers.EDITOR} component={Editor} />
             <Route path={routers.NOT_FOUND} component={NotFound} />
             <Redirect to={routers.NOT_FOUND} />
           </Switch>

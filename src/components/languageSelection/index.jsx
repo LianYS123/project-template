@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
-import { appSlice } from "store/app";
+import { appSlice } from "models/app";
 
 const LanguageSelection = props => {
   const { local } = useSelector(({ app }) => app);
